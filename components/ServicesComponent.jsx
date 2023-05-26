@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useRef } from "react";
 import Image from "next/image";
 import {
   service1,
@@ -26,6 +26,7 @@ import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
 const ServicesComponent = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const splideRef = useRef(null);
 
   const positionInfoBulle = () => {
     let slide = document.querySelectorAll(".splide__slide");
@@ -60,6 +61,11 @@ const ServicesComponent = () => {
 
   const handleItemClick = (index) => {
     setActiveIndex(index);
+
+    const handleItemClick = (index) => {
+      setActiveIndex(index);
+      splideRef.current.splide.go(index);
+    };
   };
 
   const handleItemHover = (index) => {
@@ -96,6 +102,7 @@ const ServicesComponent = () => {
               },
             },
           }}
+          ref={splideRef}
         >
           <SplideSlide>
             <div className={`info-bulle ${activeIndex === 1 ? "active" : ""}`}>

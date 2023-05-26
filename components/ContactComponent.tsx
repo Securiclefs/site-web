@@ -23,7 +23,7 @@ const ContactComponent: FC = () => {
         e.preventDefault();
     
         try {
-          const response = await axios.post("/api/contact", formData);
+          const response = await axios.post("/api/mail", formData);
           console.log(response.data); // Vous pouvez gérer la réponse ici, par exemple afficher un message de succès
           // Réinitialiser le formulaire
           setFormData({
@@ -70,7 +70,7 @@ const ContactComponent: FC = () => {
                                     <textarea placeholder="Problème rencontré / sujet*" id="sujet" name="sujet" onChange={handleChange}>{formData.sujet}</textarea>
                                 </div>
                                 <div className="drop">
-                                    <input type="file" />
+                                    <input type="file" name="image" id="image" multiple/>
                                     <div className="zone">
                                         <Image src={upload} alt="" />
                                         <p>Ajouter images / documents</p>
