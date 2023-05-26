@@ -7,7 +7,7 @@ const auth = new google.auth.GoogleAuth({
     scopes: ['https://www.googleapis.com/auth/spreadsheets.readonly'],
 });
 
-export default async function  zonesSheets(req, res) {
+export default async function  zonesSheets(req: NextApiRequest, res: NextApiResponse) {
 
     try{
         const client = await auth.getClient();

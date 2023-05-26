@@ -13,7 +13,7 @@ import PhoneButton from "@/components/shared/phoneButtonComponent";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
-const HeroComponent = () => {
+const HeroComponent: FC = () => {
   const [isSliderActive, setIsSliderActive] = useState(false);
 
   useEffect(() => {
@@ -83,10 +83,10 @@ const HeroComponent = () => {
               <p>🎓 Artisans diplômés</p>
             </SplideSlide>
             <SplideSlide>
-              <p>💎 + 10 ans d’experience</p>
+              <p>💎 + 2 ans d’experience</p>
             </SplideSlide>
             <SplideSlide>
-              <p>🔐 + 2000 interventions</p>
+              <p>🔐 + 500 interventions</p>
             </SplideSlide>
             <SplideSlide>
               <p>😷 Gestes barrières</p>
@@ -107,7 +107,7 @@ const HeroComponent = () => {
               <p className="flex mr-3">🎓 Artisans diplômés</p>
             </div>
             <div>
-              <p className="flex mr-3">🔐 + 2000 interventions</p>
+              <p className="flex mr-3">🔐 + 500 interventions</p>
             </div>
             <div>
               <p className="flex">😷 Gestes barrières</p>

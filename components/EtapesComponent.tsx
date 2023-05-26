@@ -1,6 +1,6 @@
 import { FC } from "react";
 
-const EtapesComponent = () => {
+const EtapesComponent: FC = () => {
   return (
     <section id="etapes">
         <div className="container">

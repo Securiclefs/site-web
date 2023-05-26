@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { upload, phone, email } from "@/assets/icons";
 import axios from "axios";
 
-const ContactComponent = () => {
+const ContactComponent: FC = () => {
     const [formData, setFormData] = useState({
         nom: "",
         adresse: "",
@@ -15,11 +15,11 @@ const ContactComponent = () => {
         sujet: ""
       });
     
-      const handleChange = (e) => {
+      const handleChange = (e: any) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
       };
     
-      const handleSubmit = async (e) => {
+      const handleSubmit = async (e: any) => {
         e.preventDefault();
     
         try {
@@ -67,7 +67,7 @@ const ContactComponent = () => {
                                     <input type="email" placeholder="Email*"  id="email" name="email" value={formData.email} onChange={handleChange}/>
                                 </div>
                                 <div>
-                                    <textarea placeholder="Problème rencontré / sujet*" id="sujet" name="sujet" onChange={handleChange} defaultValue={formData.sujet}></textarea>
+                                    <textarea placeholder="Problème rencontré / sujet*" id="sujet" name="sujet" onChange={handleChange}>{formData.sujet}</textarea>
                                 </div>
                                 <div className="drop">
                                     <input type="file" />
@@ -92,7 +92,7 @@ const ContactComponent = () => {
                                      
                                      <div>
                                         <h5>Téléphone</h5>
-                                        <Link href="tel:0769474632" className="text-xs">07 69 47 46 32</Link>
+                                        <Link href="tel:0769474632">07 69 47 46 32</Link>
                                      </div>
                                 </div>
 

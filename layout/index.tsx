@@ -4,7 +4,11 @@ import { NavSettingsProvider } from "@/context/nav-settings-context";
 import NavComponent from "@/components/nav";
 import FooterComponent from "@/components/FooterComponent";
 
-const LayoutComponent = ({ children }) => {
+interface Props {
+  children: JSX.Element;
+}
+
+const LayoutComponent: FC<Props> = ({ children }) => {
   return (
     <>
       <NavSettingsProvider>

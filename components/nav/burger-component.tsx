@@ -2,7 +2,7 @@ import { FC } from "react";
 import BurgerBarComponent from "./burger-bar-component";
 import { useNavSettingsContext } from "@/context/nav-settings-context";
 
-const BurgerComponent = () => {
+const BurgerComponent: FC = () => {
   const { setNavIsClosed, navIsClosed, closing, setClosing } =
     useNavSettingsContext();
 
@@ -26,7 +26,9 @@ const BurgerComponent = () => {
       {/* <span>{navIsClosed ? "Menu" : "Fermer"}</span> */}
       <div className="grid gap-[6px] w-[40px]">
         <BurgerBarComponent
-          transform={navIsClosed ? null : "translate-y-[3.5px] rotate-45"}
+          transform={
+            navIsClosed ? "w-full" : "w-full translate-y-[3.5px] rotate-45"
+          }
         />
         <BurgerBarComponent
           transform={navIsClosed ? "w-full " : "w-full hidden"}

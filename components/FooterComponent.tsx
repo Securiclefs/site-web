@@ -7,8 +7,8 @@ import { instagram, tiktok, facebook, whatsapp } from "@/assets/icons";
 // import villesData from "@/assets/Liste_villes_serrurier.csv"; // Import the data here
 import villesData from "@/assets/liste_villes.json"; // Import the data here
 
-const FooterComponent = () => {
-  const [zones, setZones] = useState([]);
+const FooterComponent: FC = () => {
+  const [zones, setZones] = useState<string[]>([]);
 
   useEffect(() => {
     setZones(villesData.map((data) => data.Ville)); // Use the data here
@@ -28,8 +28,12 @@ const FooterComponent = () => {
             <div>
               <h3>Contact</h3>
               <Link href="tel:0769474632">07 69 47 46 32</Link>
-              <Link href="/mentions-legales#mentionslegales">Mentions Légales</Link>
-              <Link href="/mentions-legales#politiques">Politique de confidentialité</Link>
+              <Link href="/mentions-legales#mentionslegales">
+                Mentions Légales
+              </Link>
+              <Link href="/mentions-legales#politiques">
+                Politique de confidentialité
+              </Link>
             </div>
             <div className="reseaux">
               <h3>Réseaux</h3>

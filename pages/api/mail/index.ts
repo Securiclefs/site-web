@@ -2,24 +2,27 @@ import nodemailer from "nodemailer";
 import { NextApiRequest, NextApiResponse } from "next";
 import smtpConfig from "@/config/smtpConfig";
 
-// interface ContactFormData {
-//   nom: string,
-//     adresse: string,
-//     ville: string,
-//     codepostal: string,
-//     telephone: string,
-//     email: string,
-//     sujet: string
-// }
+interface ContactFormData {
+  nom: string,
+    adresse: string,
+    ville: string,
+    codepostal: string,
+    telephone: string,
+    email: string,
+    sujet: string
+}
 
-// interface ApiResponse {
-//   message?: string;
-//   error?: string;
-// }
+interface ApiResponse {
+  message?: string;
+  error?: string;
+}
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<ApiResponse>
+) {
   if (req.method === "POST") {
-    const { nom, adresse, ville, codepostal, telephone, email, sujet } = req.body;
+    const { nom, adresse, ville, codepostal, telephone, email, sujet }: ContactFormData = req.body;
 
     const content = " Nom : " + nom + "\n Adresse : " + adresse + "\n Ville : " + ville + "\n Code postal : " + codepostal + "\n Téléphone : " + telephone + "\n Email : " + email + "\n Sujet : " + sujet + "\n"
 

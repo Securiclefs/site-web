@@ -5,7 +5,7 @@ import { realisation1, realisation2, realisation3, realisation4 }  from "@/asset
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 
-const RealisationsComponent = () => {
+const RealisationsComponent: FC = () => {
     return (
         <section id="realisations" >
             <div className="container">

@@ -2,12 +2,12 @@ import React, { FC } from "react";
 import Image from "next/image";
 import { phoneIcon } from "@/assets/icons";
 
-// interface BtnProp {
-//   supplentaryClasses?: string;
-//   phoneNumber?: string;
-// }
+interface BtnProp {
+  supplentaryClasses?: string;
+  phoneNumber?: string;
+}
 
-const PhoneButton = ({
+const PhoneButton: FC<BtnProp> = ({
   supplentaryClasses,
   phoneNumber = "0924451275",
 }) => {

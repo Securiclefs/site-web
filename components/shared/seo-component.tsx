@@ -1,8 +1,15 @@
 import { FC } from "react";
 import Head from "next/head";
 
+export interface Seo {
+  title: string;
+  description: string;
+}
+interface Props {
+  seo: Seo;
+}
 
-const SeoComponent = ({ seo }) => (
+const SeoComponent: FC<Props> = ({ seo }) => (
   <Head>
     <title>{seo.title}</title>
     <meta name="description" content={seo.description} />

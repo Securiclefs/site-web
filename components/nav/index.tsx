@@ -7,14 +7,16 @@ import BurgerComponent from "./burger-component";
 import { useNavSettingsContext } from "@/context/nav-settings-context";
 import PhoneButton from "../shared/phoneButtonComponent";
 
-export const NavLinkEnum = {
-  Home: "Home",
-  Services: "Comment ça marche ?",
-  Tarifs: "Nos tarifs",
-  Faq: "Notre équipe",
-  // Realisations = "Nos realisations",
+export enum NavLinkEnum {
+  Home = "Home",
+  Services = "Comment ça marche ?",
+  Tarifs = "Nos tarifs",
+  Faq = "F.A.Q",
+  Realisations = "Nos realisations",
 }
-export const getPathFromNavLink = (navLink) => {
+export const getPathFromNavLink: (navLink: NavLinkEnum) => string = (
+  navLink: NavLinkEnum
+) => {
   switch (navLink) {
     case NavLinkEnum.Home:
       return "/";
@@ -24,14 +26,14 @@ export const getPathFromNavLink = (navLink) => {
       return "/#tarifs";
     case NavLinkEnum.Faq:
       return "/#faq";
-    // case NavLinkEnum.Realisations:
-    //   return "/realisations/";
+    case NavLinkEnum.Realisations:
+      return "/realisations/";
   }
 };
 
-const NavComponent = () => {
+const NavComponent: FC = () => {
   const { navIsClosed, setNavIsClosed, closing } = useNavSettingsContext();
-  const navRef = useRef(null);
+  const navRef = useRef<HTMLDetailsElement>(null);
 
   const [linksAreVisible, setLinksAreVisible] = useState(true);
 
@@ -63,7 +65,7 @@ const NavComponent = () => {
 
     if (navIsClosed && !closing) {
       timeOut = window.setTimeout(() => {
-        nav.style.height = "130px";
+        nav.style.height = "100px";
       }, 800);
     }
 
@@ -76,7 +78,7 @@ const NavComponent = () => {
   return (
     <nav
       className={
-        " bg-white overflow-x-clip fixed inset-0 z-50 grid content-center justify-items-start gap-4 px-[5vw] py-6 before:fixed  before:inset-0 before:bg-cas-black-400 before:transition-all lg:fixed lg:bottom-[initial] lg:flex lg:gap-10 lg:py-8 lg:before:hidden " +
+        "h-[100px] md:h-[140px] bg-white overflow-x-clip fixed inset-0 z-50 grid content-center justify-items-start gap-4 px-[5vw] py-6 before:fixed  before:inset-0 before:bg-cas-black-400 before:transition-all lg:absolute lg:bottom-[initial] lg:flex lg:gap-10 lg:py-8 lg:before:hidden " +
         `${
           navIsClosed
             ? " background-nav fixed before:translate-x-full before:delay-[500ms] before:rounded-l-[48%]"
@@ -92,7 +94,7 @@ const NavComponent = () => {
         href={"/"}
         navLink={NavLinkEnum.Home}
         supplentaryClasses={
-          "absolute top-5 left-[20vw]  block w-[50px] lg:static lg:my-auto  lg:w-[64px] lg:mr-4"
+          "absolute top-5 left-[20vw]  block w-[50px] lg:static lg:my-auto  lg:w-[64px]"
         }
       />
 
@@ -124,15 +126,15 @@ export default NavComponent;
 const navLinks = [
   {
     navLink: NavLinkEnum.Services,
-    supplementaryClasses: " lg:ml-4 delay-[100ms]",
+    supplementaryClasses: "md:mt-8 lg:ml-4 delay-[100ms]",
   },
   {
     navLink: NavLinkEnum.Tarifs,
-    supplementaryClasses: " delay-[200ms]",
+    supplementaryClasses: "md:mt-8 delay-[200ms]",
   },
   {
     navLink: NavLinkEnum.Faq,
-    supplementaryClasses: " lg:mr-auto delay-[300ms]",
+    supplementaryClasses: "md:mt-8 lg:mr-auto delay-[300ms]",
   },
   // {
   //   navLink: NavLinkEnum.Realisations,
@@ -140,13 +142,13 @@ const navLinks = [
   // },
 ];
 
-// interface NavLinkComponentProp {
-//   href: string;
-//   navLink: NavLinkEnum;
-//   supplentaryClasses: string;
-//   img?: string | StaticImageData;
-// }
-const NavLinkComponent = ({
+interface NavLinkComponentProp {
+  href: string;
+  navLink: NavLinkEnum;
+  supplentaryClasses: string;
+  img?: string | StaticImageData;
+}
+const NavLinkComponent: FC<NavLinkComponentProp> = ({
   href,
   supplentaryClasses,
   navLink,
