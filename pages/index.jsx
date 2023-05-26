@@ -9,22 +9,15 @@ import {
   UrgenceComponent,
   ContactComponent,
 } from "@/components";
-import { NavLinkEnum } from "@/components/nav";
 import SeoComponent from "@/components/shared/seo-component";
-import { useNavSettingsContext } from "@/context/nav-settings-context";
-import { useEffect } from "react";
 
 export default function Home() {
-  const { setActiveNavLink } = useNavSettingsContext();
-  useEffect(() => {
-    setActiveNavLink("/homt");
-  }, [setActiveNavLink]);
   return (
     <>
       <SeoComponent
         seo={{
           title: "Accueil - Securiclefs ",
-          description: "Description SEO de la page",
+          description: "Securiclefs est une entreprise de serrurerie professionnelle offrant des services de qualité. Nous sommes spécialisés dans l'installation, la réparation et le remplacement de tous les types de serrures, de portes, de fenêtres et de systèmes de sécurité.",
         }}
       />
       <HeroComponent />

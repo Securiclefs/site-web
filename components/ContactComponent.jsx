@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { upload, phone, email } from "@/assets/icons";
@@ -67,7 +67,7 @@ const ContactComponent = () => {
                                     <input type="email" placeholder="Email*"  id="email" name="email" value={formData.email} onChange={handleChange}/>
                                 </div>
                                 <div>
-                                    <textarea placeholder="Problème rencontré / sujet*" id="sujet" name="sujet" onChange={handleChange}>{formData.sujet}</textarea>
+                                    <textarea placeholder="Problème rencontré / sujet*" id="sujet" name="sujet" onChange={handleChange} defaultValue={formData.sujet}></textarea>
                                 </div>
                                 <div className="drop">
                                     <input type="file" />

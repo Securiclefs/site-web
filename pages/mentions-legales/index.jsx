@@ -1,7 +1,14 @@
+import SeoComponent from "@/components/shared/seo-component";
 
 export default function MentionsLegales() {
   return (
     <>
+      <SeoComponent
+        seo={{
+          title: "Mentions - Securiclefs ",
+          description: "Securiclefs est une entreprise de serrurerie professionnelle offrant des services de qualité. Nous sommes spécialisés dans l'installation, la réparation et le remplacement de tous les types de serrures, de portes, de fenêtres et de systèmes de sécurité.",
+        }}
+      />
       <section id="mentionslegales">
         <div className="container">
             <h2>Mentions Légales</h2>

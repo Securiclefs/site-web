@@ -659,7 +659,7 @@ footer .container > div:last-child h4 {
   }
   #faq .container .card .grid-container > div:first-child {
     display: flex;
-    align-items: end;
+    align-items: flex-end;
     margin: 0;
   }
   #faq .container .card > h2 {
