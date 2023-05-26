@@ -9,7 +9,7 @@ interface BtnProp {
 
 const PhoneButton: FC<BtnProp> = ({
   supplentaryClasses,
-  phoneNumber = "0924451275",
+  phoneNumber = "0769474632",
 }) => {
   return (
     <a
