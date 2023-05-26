@@ -325,6 +325,7 @@ section {
 
 #faq {
     padding: 50px 14px;
+    overflow: clip;
 }
 #faq .container {
     display: flex;

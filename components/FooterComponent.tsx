@@ -20,10 +20,10 @@ const FooterComponent: FC = () => {
           <div>
             <div>
               <h3>Menu</h3>
-              <Link href="#etapes">Comment ça marche ?</Link>
-              <Link href="#tarifs">Nos tarifs</Link>
-              <Link href="#faq">F.A.G</Link>
-              <Link href="#zones">Nos zones</Link>
+              <Link href="/#etapes">Comment ça marche ?</Link>
+              <Link href="/#tarifs">Nos tarifs</Link>
+              <Link href="/#faq">F.A.G</Link>
+              <Link href="/#zones">Nos zones</Link>
             </div>
             <div>
               <h3>Contact</h3>
