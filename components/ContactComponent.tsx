@@ -47,7 +47,7 @@ const ContactComponent: FC = () => {
                     <div className="grid-container">
                         <div className="form-container">
                             <h2>Contactez-<span className="blue">nous</span></h2>
-                            <p>Utilisez ce formulaire pour nous envoyer des infos / photos.</p>
+                            <p>Utilisez ce formulaire pour nous envoyer des infos/photos.</p>
 
                             <form method="post" onSubmit={handleSubmit}>
                                 <div>
@@ -72,7 +72,7 @@ const ContactComponent: FC = () => {
                                 <div className="drop">
                                     <input type="file" name="image" id="image" multiple/>
                                     <div className="zone">
-                                        <Image src={upload} alt="" />
+                                        <Image src={upload} alt="serrurier" />
                                         <p>Ajouter images / documents</p>
                                     </div>
                                     
@@ -82,13 +82,13 @@ const ContactComponent: FC = () => {
                                 </div>
                                 <div className="politique">
                                     <input type="checkbox" name="politique" id="politique" />
-                                    <label htmlFor="politique">J’accepte les politiques de confidentialité</label>
+                                    <label htmlFor="politique">J’accepte les politiques de confidentialité.</label>
                                 </div>
                                 <button type="submit" className="form-btn">Envoyer</button>
                             </form>
                             <div className="coords">
                                 <div>
-                                    <Image src={phone} alt=""/>
+                                    <Image src={phone} alt="serrure"/>
                                      
                                      <div>
                                         <h5>Téléphone</h5>
@@ -97,7 +97,7 @@ const ContactComponent: FC = () => {
                                 </div>
 
                                 <div>
-                                    <Image src={email} alt=""/>
+                                    <Image src={email} alt="dépannage serrurerie"/>
                                      
                                      <div>
                                         <h5>E-mail</h5>

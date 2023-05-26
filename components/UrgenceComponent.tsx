@@ -20,14 +20,14 @@ const UrgenceComponent: FC = () => {
                 href="https://www.instagram.com/securiclefs/"
                 target="_blank"
               >
-                <Image src={instagram} alt="" width={70} height={70} />
+                <Image src={instagram} alt="serrure porte fenêtre" width={70} height={70} />
                 <span>@securiclefs</span>
               </Link>
               <Link
                 href="https://www.tiktok.com/@securiclefs?_t=8cWqrwXS8BX&_r=1"
                 target="_blank"
               >
-                <Image src={tiktok} alt="" width={70} height={70} />
+                <Image src={tiktok} alt="porte fermée" width={70} height={70} />
                 <span>@securiclefs</span>
               </Link>
               {/* <Link href="">
@@ -35,13 +35,13 @@ const UrgenceComponent: FC = () => {
                                 <span>@securiclefs</span>
                             </Link> */}
               <Link href="https://wa.link/uaapxv" target="_blank">
-                <Image src={whatsapp} alt="" width={70} height={70} />
+                <Image src={whatsapp} alt="dépanner" width={70} height={70} />
                 <span>@securiclefs</span>
               </Link>
             </div>
             <div>
               <h3>Equipe réactive aux messages</h3>
-              <p>N’hésitez pas a nous contacter sur ces réseaux</p>
+              <p>N’hésitez pas à nous contacter sur ces réseaux</p>
             </div>
           </div>
         </div>

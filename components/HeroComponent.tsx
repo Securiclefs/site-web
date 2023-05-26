@@ -44,7 +44,7 @@ const HeroComponent: FC = () => {
           <h1>Serrurier à Paris et en Ile de France </h1>
           <h2>Fiabilité et rapidité !</h2>
           <div>
-            <Image src={assurances} height={15} width={15} alt="" />
+            <Image src={assurances} height={15} width={15} alt="coffre fort" />
             <span>Agréé assurances</span>
           </div>
           {/* <div>
@@ -73,7 +73,7 @@ const HeroComponent: FC = () => {
           >
             <SplideSlide>
               <p className="flex">
-                <Image src={france} alt="" /> &nbsp; Entreprise française
+                <Image src={france} alt="intervention rapide" /> &nbsp; Entreprise française
               </p>
             </SplideSlide>
             <SplideSlide>
@@ -97,7 +97,7 @@ const HeroComponent: FC = () => {
           <>
             <div>
               <p className="flex mr-3">
-                <Image src={france} alt="" /> &nbsp; Entreprise française
+                <Image src={france} alt="intervention d urgence" /> &nbsp; Entreprise française
               </p>
             </div>
             <div>

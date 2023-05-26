@@ -11,12 +11,12 @@ const EtapesComponent: FC = () => {
                 <div className="card">
                     <span>1</span>
                     <h3>Devis gratuit</h3>
-                    <p>Contactez-nous au 01 88 61 02 62 pour nous faire part de votre problématique.</p>
+                    <p>Contactez-nous au 07 69 47 46 32 pour nous faire part de votre problématique.</p>
                 </div>
                 <div className="card">
                     <span>2</span>
                     <h3>Intervention</h3>
-                    <p>Un de nos serruriers se déplace rapdiement pour vous garantir une prestation de qualité.</p>
+                    <p>Un de nos serruriers se déplace rapidement pour vous garantir une prestation de qualité.</p>
                 </div>
                 <div className="card">
                     <span>3</span>

@@ -42,20 +42,20 @@ const FooterComponent: FC = () => {
                   href="https://www.instagram.com/securiclefs/"
                   target="_blank"
                 >
-                  <Image src={instagram} alt="" width={70} height={70} />
+                  <Image src={instagram} alt="installation de serrure" width={70} height={70} />
                 </Link>
                 <Link
                   href="https://www.tiktok.com/@securiclefs?_t=8cWqrwXS8BX&_r=1"
                   target="_blank"
                 >
-                  <Image src={tiktok} alt="" width={70} height={70} />
+                  <Image src={tiktok} alt="urgence serrurier" width={70} height={70} />
                 </Link>
                 {/* <Link href="" target="_blank">
                   <Image src={facebook} alt="" width={70} height={70} />
                   <span>@reseau</span>
                 </Link> */}
                 <Link href="https://wa.link/uaapxv" target="_blank">
-                  <Image src={whatsapp} alt="" width={70} height={70} />
+                  <Image src={whatsapp} alt="ouverture de porte" width={70} height={70} />
                 </Link>
               </div>
             </div>

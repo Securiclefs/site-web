@@ -384,7 +384,7 @@ section {
 }
 #faq .container .card .grid-container > div:last-child .accordion .accordion-item .accordion-header span::before {
     content: '-';
-    color: var(--cl-black);
+    color: var(--cl-blue-dark);
     font-size: 18px;
     font-weight: bold;
     transition: 0.5s;
@@ -760,7 +760,7 @@ footer .container > div:last-child h4 {
 }
 
 @media (min-width: 576px) {
-    footer .container > div {
+    footer .container > div:last-child{
         grid-template-columns: repeat(3, 1fr);
     }
 } /*# sourceMappingURL=mlStyle.css.map */

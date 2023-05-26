@@ -10,7 +10,7 @@ const TarifsComponent: FC = () => {
     <section id="tarifs">
         <div className="container">
            <h2 className="title">Nos tarifs</h2>
-           <p className="subtitle">Combien coute un serrurier ?</p>
+           <p className="subtitle">Combien coûte  un serrurier ?</p>
 
            <div className="flex-container">
                 <div className="card">
@@ -18,10 +18,10 @@ const TarifsComponent: FC = () => {
                         <h2>Porte claquée</h2>
                         <span>Dès <strong>140 €</strong> TTC</span>
                         <ul>
-                            <li><Image src={check} alt="" /><span className="green">Devis gratuit</span></li>
-                            <li><Image src={check} alt="" />Déplacement</li>
-                            <li><Image src={check} alt="" />Ouverture de porte</li>
-                            <li><Image src={check} alt="" />Devis et facture</li>
+                            <li><Image src={check} alt="pose de serrure" /><span className="green">Devis gratuit</span></li>
+                            <li><Image src={check} alt="serrure bloquée" />Déplacement</li>
+                            <li><Image src={check} alt="ouverture de porte" />Ouverture de porte</li>
+                            <li><Image src={check} alt="fermée à clé" />Devis et facture</li>
                         </ul>
                    </div>
                     <PhoneButton/>
@@ -31,11 +31,11 @@ const TarifsComponent: FC = () => {
                         <h2>Porte fermée</h2>
                         <span>Dès <strong>160 €</strong> TTC</span>
                         <ul>
-                            <li><Image src={check} alt="" /><span className="green">Devis gratuit</span></li>
-                            <li><Image src={check} alt="" />Déplacement</li>
-                            <li><Image src={check} alt="" />Ouverture de porte</li>
-                            <li><Image src={check} alt="" />Nettoyage</li>
-                            <li><Image src={check} alt="" />Devis et facture</li>
+                            <li><Image src={check} alt="urgence serrurerie" /><span className="green">Devis gratuit</span></li>
+                            <li><Image src={check} alt="ouvrir une serrure" />Déplacement</li>
+                            <li><Image src={check} alt="déblocage de porte" />Ouverture de porte</li>
+                            <li><Image src={check} alt="serrurier dépannage" />Nettoyage</li>
+                            <li><Image src={check} alt="assurance habitation" />Devis et facture</li>
                         </ul>
                     </div>
                     <PhoneButton/>
@@ -45,11 +45,11 @@ const TarifsComponent: FC = () => {
                         <h2>Porte blindée fermée</h2>
                         <span>Dès <strong>160 €</strong> TTC</span>
                         <ul>
-                            <li><Image src={check} alt="" /><span className="green">Devis gratuit</span></li>
-                            <li><Image src={check} alt="" />Déplacement</li>
-                            <li><Image src={check} alt="" />Ouverture de porte</li>
-                            <li><Image src={check} alt="" />Nettoyage</li>
-                            <li><Image src={check} alt="" />Devis et facture</li>
+                            <li><Image src={check} alt="demande de devis" /><span className="green">Devis gratuit</span></li>
+                            <li><Image src={check} alt="changement de serrures" />Déplacement</li>
+                            <li><Image src={check} alt="portes de garage" />Ouverture de porte</li>
+                            <li><Image src={check} alt="dépanneurs" />Nettoyage</li>
+                            <li><Image src={check} alt="serrurier weekend" />Devis et facture</li>
                         </ul>
                     </div>
                     <PhoneButton/>
