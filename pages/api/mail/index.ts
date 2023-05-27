@@ -4,7 +4,7 @@ import fs from 'fs';
 import nodemailer from "nodemailer";
 import path from "path";
 
-const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE } = process.env;
+const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE, SMTP_MAIL } = process.env;
 
 export const config = {
     api: {
@@ -28,9 +28,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.log("Files:", files);  // Add this line
 
             const { nom, adresse, ville, codepostal, telephone, email, sujet } = fields;
-            const firstCodePostal = Array.isArray(codepostal) ? codepostal[0] : codepostal;
-            const firstTelephone = Array.isArray(telephone) ? telephone[0] : telephone;
-            const firstEmail = Array.isArray(email) ? email[0] : email;
 
             const content =
                 " Nom : " +
@@ -60,8 +57,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             });
 
             const mailOptions = {
-                from: SMTP_USER,
-                to: SMTP_USER,
+                from: SMTP_MAIL,
+                to: SMTP_MAIL,
                 subject: sujet,
                 text: content,
                 attachments: Object.values(files).map((file : any) => {
