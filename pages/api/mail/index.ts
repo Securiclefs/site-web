@@ -36,6 +36,17 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       console.log(req.body);
       const { nom, adresse, ville, codepostal, telephone, email, sujet } = req.body;
 
+      // Vérification des données
+      if (!nom || !adresse || !ville || !codepostal || !telephone || !email || !sujet) {
+        return res.status(400).json({ message: "Veuillez remplir tous les champs du formulaire." });
+      }
+
+      // Vérification du format de l'email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        return res.status(400).json({ message: "Veuillez fournir une adresse email valide." });
+      }
+
       const content =
         " Nom : " +
         nom +

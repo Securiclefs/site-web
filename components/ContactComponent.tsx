@@ -64,7 +64,7 @@ const ContactComponent: FC = () => {
                                 </div>
                                 <div className="two-column">
                                     <input type="text" placeholder="Ville*"  id="ville" name="ville" value={formData.ville} onChange={handleChange}/>
-                                    <input type="number" placeholder="Code postal*"  id="codepostal" name="codepostal" value={formData.codepostal} onChange={handleChange}/>
+                                    <input type="text" placeholder="Code postal*"  id="codepostal" name="codepostal" value={formData.codepostal} onChange={handleChange}/>
                                 </div>
                                 <div>
                                     <input type="tel" placeholder="Numéro de téléphone*"  id="telephone" name="telephone" value={formData.telephone} onChange={handleChange}/>
