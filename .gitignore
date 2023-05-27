@@ -12,7 +12,10 @@
 /.next/
 /out/
 
-# not send to git a file in upload/files folder except .gitkeep
+# Ignore everything in the directory
+/upload/files/*
+
+# But don't ignore .gitkeep
 !/upload/files/.gitkeep
 
 # production
