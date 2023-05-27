@@ -1,96 +1,93 @@
+import { NextApiRequest, NextApiResponse } from "next";
+import formidable from "formidable";
+import fs from 'fs';
 import nodemailer from "nodemailer";
-import type { NextApiRequest, NextApiResponse } from "next";
-import multer from "multer";
+import path from "path";
 
 const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE } = process.env;
 
-interface ContactFormData {
-  nom: string;
-  adresse: string;
-  ville: string;
-  codepostal: string;
-  telephone: string;
-  email: string;
-  sujet: string;
-}
-
-interface ApiResponse {
-  message?: string;
-  error?: string;
-}
-
-const upload = multer().fields([
-  { name: 'nom', maxCount: 1 },
-  { name: 'adresse', maxCount: 1 },
-  { name: 'ville', maxCount: 1 },
-  { name: 'codepostal', maxCount: 1 },
-  { name: 'telephone', maxCount: 1 },
-  { name: 'email', maxCount: 1 },
-  { name: 'sujet', maxCount: 1 },
-  { name: 'politique', maxCount: 1 },
-]);
-
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
-  if (req.method === 'POST') {
-    try {
-      console.log(req.body);
-      const { nom, adresse, ville, codepostal, telephone, email, sujet } = req.body;
-
-      // Vérification des données
-      if (!nom || !adresse || !ville || !codepostal || !telephone || !email || !sujet) {
-        return res.status(400).json({ message: "Veuillez remplir tous les champs du formulaire." });
-      }
-
-      // Vérification du format de l'email
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(email)) {
-        return res.status(400).json({ message: "Veuillez fournir une adresse email valide." });
-      }
-
-      const content =
-        " Nom : " +
-        nom +
-        "\n Adresse : " +
-        adresse +
-        "\n Ville : " +
-        ville +
-        "\n Code postal : " +
-        codepostal +
-        "\n Téléphone : " +
-        telephone +
-        "\n Email : " +
-        email +
-        "\n Sujet : " +
-        sujet +
-        "\n";
-
-      const transporter = nodemailer.createTransport({
-        host: SMTP_HOST,
-        port: parseInt(SMTP_PORT as string),
-        secure: SMTP_SECURE === 'true',
-        auth: {
-          user: SMTP_USER,
-          pass: SMTP_PASS,
-        },
-      });
-
-      const mailOptions = {
-        from: "contact@securiclefs.fr",
-        to: SMTP_USER,
-        subject: "Contact - Securiclefs",
-        text: content,
-      };
-
-      await transporter.sendMail(mailOptions);
-
-      res.status(200).json({ message: "Message envoyé." });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: "Une erreur c'est ptoduite." });
-    }
-  } else {
-    res.status(405).json({ message: 'Method not allowed' });
-  }
+export const config = {
+    api: {
+        bodyParser: false,
+    },
 };
 
-export default handler;
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method === 'POST') {
+
+        const form = new formidable.IncomingForm(
+            {
+                uploadDir: path.join(process.cwd(), 'upload'),
+                keepExtensions: true,
+            });
+        form.parse(req, async (err, fields, files) => {
+            if (err) {
+                res.status(500).json({ error: "Failed to parse form" });
+                return;
+            }
+            console.log("Files:", files);  // Add this line
+
+            const { nom, adresse, ville, codepostal, telephone, email, sujet } = fields;
+
+            const content =
+                " Nom : " +
+                nom +
+                "\n Adresse : " +
+                adresse +
+                "\n Ville : " +
+                ville +
+                "\n Code postal : " +
+                codepostal +
+                "\n Téléphone : " +
+                telephone +
+                "\n Email : " +
+                email +
+                "\n Sujet : " +
+                sujet +
+                "\n";
+
+            const transporter = nodemailer.createTransport({
+                host: SMTP_HOST || '',
+                port: Number(SMTP_PORT) || 587,
+                secure: SMTP_SECURE === 'true',
+                auth: {
+                    user: SMTP_USER || '',
+                    pass: SMTP_PASS || '',
+                },
+            });
+
+            const mailOptions = {
+                from: SMTP_USER,
+                to: SMTP_USER,
+                subject: sujet,
+                text: content,
+                attachments: Object.values(files).map((file : any) => {
+                    console.log("File name:", file.originalFilename);  // And this line
+                    return {
+                        filename: file.originalFilename,
+                        content: fs.readFileSync(file.filepath),
+                    };
+                }),
+            };
+
+            try {
+                await transporter.sendMail(mailOptions as any);
+
+                Object.values(files).forEach((file : any) => {
+                    fs.unlink(file.filepath, function(err) {  // Change this line
+                        if (err) throw err;
+                        console.log(`File ${file.filepath} deleted`);  // And this line
+                    });
+                });
+
+                res.status(200).json({ message: "E-mail sent successfully" });
+            } catch (error) {
+                console.error("Error sending e-mail:", error);
+                res.status(500).json({ error: "Failed to send e-mail" });
+            }
+        });
+    } else {
+        res.setHeader('Allow', ['POST'])
+        res.status(405).end(`Method ${req.method} Not Allowed`)
+    }
+}

@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# upload
+/upload/*
+
 # production
 /build
 

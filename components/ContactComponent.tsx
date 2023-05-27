@@ -1,65 +1,77 @@
-import React, { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { upload, phone, email } from "@/assets/icons";
 import axios from "axios";
 
 const ContactComponent: FC = () => {
-    const [formData, setFormData] = useState({
+    const [formData, setFormData] = useState<{ [key: string]: string | FileList | null }>({
         nom: "",
         adresse: "",
         ville: "",
         codepostal: "",
         telephone: "",
         email: "",
-        sujet: ""
-      });
+        sujet: "",
+        file: null,
+    });
 
-    //   useEffect(() => {
-    //     const elements = document.querySelectorAll('.splide__slide.is-visible');
-    //     console.log(elements);
-        
-    //     for (let i = elements.length - 1; i >= 0; i--) {
-    //       const element = elements[i];
-    //       const rect = element.getBoundingClientRect();
-    //       if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-    //         element.classList.add('last-visible-slide');
-    //         break;
-    //       }
-    //     }
-    //   }, []);
-    
 
-      const [message, setMessage] = useState()
-    
-      const handleChange = (e: any) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-      };
-    
-      const handleSubmit = async (e: any) => {
-        e.preventDefault();
-    
-        try {
-
-          const response = await axios.post("/api/mail", formData );
-          console.log(response.data); // Vous pouvez gérer la réponse ici, par exemple afficher un message de succès
-          // Réinitialiser le formulaire
-
-          setMessage(response.data.message)
-          
-          setFormData({
-            nom: "",
-            adresse: "",
-            ville: "",
-            codepostal: "",
-            telephone: "",
-            email: "",
-            sujet: ""
-          });
-        } catch (error) {
-          console.error(error); // Gérer les erreurs de requête
+    const handleChange = (e: any) => {
+        console.log(e.target.files)
+        if (e.target.name === "file") {
+            setFormData({ ...formData, [e.target.name]: e.target.files });
+        } else {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
         }
-      };
+    };
+
+    const handleSubmit = async (e: any) => {
+        e.preventDefault();
+
+        // Initialize FormData
+        const data = new FormData();
+        for (let key in formData) {
+            if (key === "file" && formData[key] instanceof FileList) {
+                // @ts-ignore
+                for (let i = 0; i < formData[key].length; i++) {
+                    // @ts-ignore
+                    if (formData[key][i]) {
+                        // @ts-ignore
+                        data.append(`file${i}`, formData[key][i]);  // Append with key file and index
+                    }
+                }
+            } else {
+                data.append(key, String(formData[key]));
+            }
+        }
+
+
+        // @ts-ignore
+        for (let [key, value] of data.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+        try {
+            const response = await axios.post("/api/mail", data, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                }
+            });
+            console.log(response.data);
+            setFormData({
+                nom: "",
+                adresse: "",
+                ville: "",
+                codepostal: "",
+                telephone: "",
+                email: "",
+                sujet: "",
+                file: null,
+            });
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <section id="contact">
@@ -69,38 +81,42 @@ const ContactComponent: FC = () => {
                         <div className="form-container">
                             <h2>Contactez-<span className="blue">nous</span></h2>
                             <p>Utilisez ce formulaire pour nous envoyer des infos/photos.</p>
-
-                            <form method="post" onSubmit={handleSubmit}>
+                                {/*multi form data*/}
+                            <form method="post" onSubmit={handleSubmit} encType="multipart/form-data">
                                 <div>
-                                    <input type="text" placeholder="Nom complet*" id="nom" name="nom" value={formData.nom} onChange={handleChange} />
+                                    <input type="text" placeholder="Nom complet*" id="nom" name="nom"  onChange={handleChange} />
                                 </div>
                                 <div>
-                                    <input type="text" placeholder="Adresse*"  id="adresse" name="adresse" value={formData.adresse} onChange={handleChange}/>
+                                    <input type="text" placeholder="Adresse*"  id="adresse" name="adresse"  onChange={handleChange}/>
                                 </div>
                                 <div className="two-column">
-                                    <input type="text" placeholder="Ville*"  id="ville" name="ville" value={formData.ville} onChange={handleChange}/>
-                                    <input type="text" placeholder="Code postal*"  id="codepostal" name="codepostal" value={formData.codepostal} onChange={handleChange}/>
+                                    <input type="text" placeholder="Ville*"  id="ville" name="ville"  onChange={handleChange}/>
+                                    <input type="number" placeholder="Code postal*"  id="codepostal" name="codepostal" onChange={handleChange}/>
                                 </div>
                                 <div>
-                                    <input type="tel" placeholder="Numéro de téléphone*"  id="telephone" name="telephone" value={formData.telephone} onChange={handleChange}/>
+                                    <input type="tel" placeholder="Numéro de téléphone*"  id="telephone" name="telephone"  onChange={handleChange}/>
                                 </div>
                                 <div>
-                                    <input type="email" placeholder="Email*"  id="email" name="email" value={formData.email} onChange={handleChange}/>
+                                    <input type="email" placeholder="Email*"  id="email" name="email" onChange={handleChange}/>
                                 </div>
                                 <div>
-                                <textarea
-            placeholder="Problème rencontré / sujet*"
-            id="sujet"
-            name="sujet" // Ajout de l'attribut "name" correspondant à la clé dans l'objet formData
-            onChange={handleChange}
-            value={formData.sujet}
-          ></textarea>
+                                    <textarea placeholder="Problème rencontré / sujet*" id="sujet" name="sujet" onChange={handleChange}></textarea>
+                                </div>
+                                <div className="drop">
+                                    <input type="file" name="file" id="file" onChange={handleChange} multiple />
+                                    <div className="zone">
+                                        <Image src={upload} alt="serrurier" />
+                                        <p>Ajouter images / documents</p>
+                                    </div>
+                                    
+                                </div>
+                                <div className="info-file">
+                                    <p>Le document ne doit pas dépasser 10mb</p>
                                 </div>
                                 <div className="politique">
                                     <input type="checkbox" name="politique" id="politique" />
                                     <label htmlFor="politique">J’accepte les politiques de confidentialité.</label>
                                 </div>
-                                <p className="message-error">{message}</p>
                                 <button type="submit" className="form-btn">Envoyer</button>
                             </form>
                             <div className="coords">
