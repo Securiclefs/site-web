@@ -13,7 +13,7 @@
 /out/
 
 # upload
-/upload/*
+/upload/files/*
 
 # production
 /build

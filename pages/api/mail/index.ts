@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         const form = new formidable.IncomingForm(
             {
-                uploadDir: path.join(process.cwd(), 'upload'),
+                uploadDir: path.join(process.cwd(), 'upload/files'),
                 keepExtensions: true,
             });
         form.parse(req, async (err, fields, files) => {
