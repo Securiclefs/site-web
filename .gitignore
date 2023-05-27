@@ -12,8 +12,8 @@
 /.next/
 /out/
 
-# upload
-/upload/files/*
+# not send to git a file in upload/files folder except .gitkeep
+!/upload/files/.gitkeep
 
 # production
 /build
