@@ -7,7 +7,6 @@ const BurgerComponent: FC = () => {
     useNavSettingsContext();
 
   const handleClick = () => {
-    console.log(closing);
     if (closing) return;
     setNavIsClosed(!navIsClosed);
     if (navIsClosed) {

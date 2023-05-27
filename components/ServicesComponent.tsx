@@ -38,7 +38,6 @@ const ServicesComponent: FC = () => {
       if (element.classList.contains("is-visible")) {
         if (count == 0 || count == slideVisible.length - 1) {
           let ib = infoBulle[index];
-          console.log(ib);
           if (ib) {
             ib.classList.remove("active");
           }

@@ -25,7 +25,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 res.status(500).json({ error: "Failed to parse form" });
                 return;
             }
-            console.log("Files:", files);  // Add this line
 
             const { nom, adresse, ville, codepostal, telephone, email, sujet } = fields;
 
@@ -62,7 +61,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 subject: sujet,
                 text: content,
                 attachments: Object.values(files).map((file : any) => {
-                    console.log("File name:", file.originalFilename);  // And this line
                     return {
                         filename: file.originalFilename,
                         content: fs.readFileSync(file.filepath),
@@ -76,7 +74,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 Object.values(files).forEach((file : any) => {
                     fs.unlink(file.filepath, function(err) {  // Change this line
                         if (err) throw err;
-                        console.log(`File ${file.filepath} deleted`);  // And this line
                     });
                 });
 

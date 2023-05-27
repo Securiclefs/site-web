@@ -22,9 +22,6 @@ const ContactComponent: FC = () => {
 
 
     const handleChange = (e: any) => {
-        console.log(formData);
-        
-        
         if (e.target.name === "file") {
             setMessageFile("")
 
@@ -77,18 +74,12 @@ const ContactComponent: FC = () => {
             }
         }
 
-
-        // @ts-ignore
-        for (let [key, value] of data.entries()) {
-            console.log(`${key}: ${value}`);
-        }
         try {
             const response = await axios.post("/api/mail", data, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 }
             });
-            console.log(response.data);
             setMessage(response.data.message)
            let nomValue =  document.querySelector("#nom") as HTMLInputElement 
            nomValue.value = ""

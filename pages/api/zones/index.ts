@@ -12,9 +12,6 @@ export default async function  zonesSheets(req: NextApiRequest, res: NextApiResp
     try{
         const client = await auth.getClient();
 
-        console.log("test1");
-        
-
         const sheets = google.sheets('v4');
 
         const spreadsheetId = '1ghU12ULh3yWDnmZEz47Gt77R5lKpzw-bTHo_KEhr-vs';
@@ -25,9 +22,6 @@ export default async function  zonesSheets(req: NextApiRequest, res: NextApiResp
         range,
         });
 
-
-        console.log("test2");
-
         const data = response.data.values;
 
         res.json({
@@ -35,7 +29,6 @@ export default async function  zonesSheets(req: NextApiRequest, res: NextApiResp
         })
 
     } catch(error){
-        console.log(error);
         
         res.json({
             message: "Une erreur est survenue"
