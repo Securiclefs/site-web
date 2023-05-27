@@ -15,6 +15,9 @@ export const config = {
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
 
+        console.log(process.env);
+        
+
         const form = new formidable.IncomingForm(
             {
                 uploadDir: path.join(process.cwd(), 'upload/files'),
