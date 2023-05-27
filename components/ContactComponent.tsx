@@ -16,14 +16,45 @@ const ContactComponent: FC = () => {
         file: null,
     });
 
+    const [message, setMessage] = useState("")
+    const [messageFile, setMessageFile] = useState("")
+    const [totalFileSize, setTotalFileSize] = useState(0);
+
 
     const handleChange = (e: any) => {
-        console.log(e.target.files)
+        console.log(formData);
+        
+        
         if (e.target.name === "file") {
-            setFormData({ ...formData, [e.target.name]: e.target.files });
+            setMessageFile("")
+
+            if(e.target.files.length <= 10){
+                const totalSize = getTotalFileSize(e.target.files);
+                if (totalSize <= 10 * 1024 * 1024) {
+                    setFormData({ ...formData, [e.target.name]: e.target.files });
+                    setTotalFileSize(totalSize)
+                   
+                    
+                } else{
+                    setMessageFile("Le poid total est limité à 10 mb.")
+                }
+            } else {
+                setMessageFile("Le nombre fichier est limité à 10.")
+            }
+           
         } else {
             setFormData({ ...formData, [e.target.name]: e.target.value });
         }
+    };
+
+    const getTotalFileSize = (files: FileList | null): number => {
+        let totalSize = 0;
+        if (files) {
+            for (let i = 0; i < files.length; i++) {
+                totalSize += files[i].size;
+            }
+        }
+        return totalSize;
     };
 
     const handleSubmit = async (e: any) => {
@@ -58,16 +89,26 @@ const ContactComponent: FC = () => {
                 }
             });
             console.log(response.data);
-            setFormData({
-                nom: "",
-                adresse: "",
-                ville: "",
-                codepostal: "",
-                telephone: "",
-                email: "",
-                sujet: "",
-                file: null,
-            });
+            setMessage(response.data.message)
+           let nomValue =  document.querySelector("#nom") as HTMLInputElement 
+           nomValue.value = ""
+           let adresseValue =  document.querySelector("#adresse") as HTMLInputElement 
+           adresseValue.value = ""
+           let villeValue =  document.querySelector("#ville") as HTMLInputElement 
+           villeValue.value = ""
+           let codepostalValue =  document.querySelector("#codepostal") as HTMLInputElement 
+           codepostalValue.value = ""
+           let telephoneValue =  document.querySelector("#telephone") as HTMLInputElement 
+           telephoneValue.value = ""
+           let emailValue =  document.querySelector("#email") as HTMLInputElement 
+           emailValue.value = ""
+           let sujetValue =  document.querySelector("#sujet") as HTMLTextAreaElement 
+           sujetValue.value = ""
+           let fileValue =  document.querySelector("#file") as any
+           fileValue.value = ""
+
+            
+            setTotalFileSize(0);
         } catch (error) {
             console.error(error);
         }
@@ -80,7 +121,7 @@ const ContactComponent: FC = () => {
                     <div className="grid-container">
                         <div className="form-container">
                             <h2>Contactez-<span className="blue">nous</span></h2>
-                            <p>Utilisez ce formulaire pour nous envoyer des infos/photos.</p>
+                            <p>Utilisez ce formulaire pour nous envoyer des informations/photos.</p>
                                 {/*multi form data*/}
                             <form method="post" onSubmit={handleSubmit} encType="multipart/form-data">
                                 <div>
@@ -91,7 +132,7 @@ const ContactComponent: FC = () => {
                                 </div>
                                 <div className="two-column">
                                     <input type="text" placeholder="Ville*"  id="ville" name="ville"  onChange={handleChange}/>
-                                    <input type="number" placeholder="Code postal*"  id="codepostal" name="codepostal" onChange={handleChange}/>
+                                    <input type="text" placeholder="Code postal*"  id="codepostal" name="codepostal" onChange={handleChange}/>
                                 </div>
                                 <div>
                                     <input type="tel" placeholder="Numéro de téléphone*"  id="telephone" name="telephone"  onChange={handleChange}/>
@@ -111,12 +152,18 @@ const ContactComponent: FC = () => {
                                     
                                 </div>
                                 <div className="info-file">
+                                {formData.file && typeof formData.file !== 'string' && Array.from(formData.file).map((file: File, index: number) => (
+    <div key={index}>
+      <p>{file.name}</p>
+    </div>
+  ))}
                                     <p>Le document ne doit pas dépasser 10mb</p>
+                                    <p className="message-error">{messageFile}</p>
                                 </div>
                                 <div className="politique">
-                                    <input type="checkbox" name="politique" id="politique" />
-                                    <label htmlFor="politique">J’accepte les politiques de confidentialité.</label>
+                                    <label htmlFor="politique">En soumettant ce formulaire, vous acceptez notre politique de confidentialité.</label>
                                 </div>
+                                <p className="message-success">{message}</p>
                                 <button type="submit" className="form-btn">Envoyer</button>
                             </form>
                             <div className="coords">

@@ -28,6 +28,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             console.log("Files:", files);  // Add this line
 
             const { nom, adresse, ville, codepostal, telephone, email, sujet } = fields;
+            const firstCodePostal = Array.isArray(codepostal) ? codepostal[0] : codepostal;
+            const firstTelephone = Array.isArray(telephone) ? telephone[0] : telephone;
+            const firstEmail = Array.isArray(email) ? email[0] : email;
 
             const content =
                 " Nom : " +
@@ -80,10 +83,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     });
                 });
 
-                res.status(200).json({ message: "E-mail sent successfully" });
+                res.status(200).json({ message: "Message envoyé." });
             } catch (error) {
                 console.error("Error sending e-mail:", error);
-                res.status(500).json({ error: "Failed to send e-mail" });
+                res.status(500).json({ message: "Une erreur c'est produite" });
             }
         });
     } else {

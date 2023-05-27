@@ -27,6 +27,15 @@ const MentionsLegales: NextPage<Props> = () => {
           </p>
 
           <div>
+            <h3>Société</h3>
+            <p>Securiclefs</p>
+            <p>Siège social : 38 rue de la Mare des Noues, 95130 Franconville</p>
+            <p>SIREN : 95133333500010</p>
+            <p>Code APE: 4332B</p>
+            <p>Téléphone : +33769474632</p>
+            <p>Email : contact@securiclefs.fr</p>
+          </div>
+          <div>
             <h3>Editeur du site</h3>
             <p>
               Le présent site, accessible à l’URL www.securiclefs.fr (le « Site
@@ -46,14 +55,6 @@ const MentionsLegales: NextPage<Props> = () => {
             <h3>Directeur de publication </h3>
             <p>Le Directeur de la publication du Site est Amal Cardot.</p>
           </div>
-          <div>
-            <h3>Nous contacter</h3>
-            <p>Par téléphone : +33769474632</p>
-            <p>Par email : contact@securiclefs.fr</p>
-            <p>
-              Par courrier : 38 rue de la Mare des Noues, 95130 Franconville
-            </p>
-          </div>
         </div>
       </section>
       <section id="politiques">
@@ -62,9 +63,7 @@ const MentionsLegales: NextPage<Props> = () => {
 
           <div>
             <p>
-              Le Site respecte les lois européennes sur la protection de la vie
-              privée relative à l'information, aux fichers et aux libertés, vous
-              disposez d'un droit d'accès, de modificaton, de rectification et
+            Le Site respecte les lois européennes sur la protection de la vie privée relative à l'information, aux fichiers et aux libertés, vous disposez d'un droit d'accès, de modification, de rectification et
               de suppression de données qui vous concernent. Conformement à la
               loi "Informatique et Libertés" n°78-17 du 06 janvier 1978.
             </p>

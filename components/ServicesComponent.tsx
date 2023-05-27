@@ -98,9 +98,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 1 ? "active" : ""}`}>
               <h2>Ouverture de porte claquée</h2>
               <p>
-                Si votre porte a été fermée, mais non verrouillée, nous
-                effectuons une ouverture à l'aide d'outils spécialisés pour
-                éviter d'endommager la porte.
+              Si votre porte a été fermée mais non verrouillée, nous effectuons une ouverture à l'aide d'outils spécialisés pour éviter d'endommager la porte.
               </p>
             </div>
             <div
@@ -127,9 +125,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 2 ? "active" : ""}`}>
               <h2>Fermeture à clé</h2>
               <p>
-                Si vous avez verrouillé votre porte et perdu la clé, nous
-                procédons au perçage du cylindre pour pouvoir déverrouiller la
-                porte sans causer de dommages excessifs.
+              Si vous avez verrouillé votre porte et perdu la clé, nous procédons au perçage du cylindre pour pouvoir déverrouiller la porte sans causer de dommages excessifs.
               </p>
             </div>
             <div
@@ -153,9 +149,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 3 ? "active" : ""}`}>
               <h2>Installation de volets roulants</h2>
               <p>
-                Après avoir pris les mesures nécessaires, nous vous proposons
-                l'installation de volets roulants ou le remplacement du moteur
-                existant.
+              Après avoir pris les mesures nécessaires, nous vous proposons l'installation de volets roulants ou le remplacement du moteur existant.
               </p>
             </div>
             <div
@@ -182,9 +176,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 4 ? "active" : ""}`}>
               <h2>Pose de serrures</h2>
               <p>
-                Que vous souhaitiez une serrure carénée, une serrure à 3 points
-                ou une serrure monobloc, nous vous proposons l'installation de
-                la serrure correspondant à vos préférences.
+              Que vous souhaitiez une serrure carénée, une serrure à 3 points ou une serrure monobloc, nous vous proposons l'installation de la serrure correspondant à vos préférences.
               </p>
             </div>
             <div
@@ -208,10 +200,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 5 ? "active" : ""}`}>
               <h2>Installation de blocs-portes</h2>
               <p>
-                Que ce soit pour une porte de chambre ou une porte d'entrée,
-                nous remplaçons le cadre et la porte selon vos préférences. Si
-                le cadre est en bon état, nous pouvons également ne remplacer
-                que la porte.
+              Que ce soit pour une porte de chambre ou une porte d'entrée, nous remplaçons le cadre et la porte selon vos préférences. Si le cadre est en bon état, nous pouvons également ne remplacer que la porte.
               </p>
             </div>
             <div
@@ -237,9 +226,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 6 ? "active" : ""}`}>
               <h2>Installation de portes anti-squat</h2>
               <p>
-                Après une expulsion d'appartement pour prévenir toute tentative
-                de squat, nous vous proposons l'installation d'une porte
-                anti-squat.
+              Après une expulsion d'appartement pour prévenir toute tentative de squat, nous vous proposons l'installation d'une porte anti-squat.
               </p>
             </div>
             <div
@@ -265,9 +252,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 7 ? "active" : ""}`}>
               <h2>Pose de cornières anti-pinces</h2>
               <p>
-                Nous installons des cornières anti-pinces pour renforcer la
-                sécurité de vos portes contre les tentatives d'effraction par
-                ouverture à la radio ou au pied de biche.
+              Nous installons des cornières anti-pinces pour renforcer la sécurité de vos portes contre les tentatives d'effraction par ouverture à la radio ou au pied-de-biche.
               </p>
             </div>
             <div
@@ -293,8 +278,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 8 ? "active" : ""}`}>
               <h2>Installation de paumelles</h2>
               <p>
-                Si votre porte penche ou frotte contre le sol, nous pouvons
-                installer de nouvelles paumelles pour résoudre ce problème.
+              Si votre porte penche ou frotte contre le sol, nous pouvons installer de nouvelles paumelles pour résoudre ce problème.
               </p>
             </div>
             <div
@@ -320,10 +304,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 9 ? "active" : ""}`}>
               <h2>Remplacement de vitrage ou de fenêtre</h2>
               <p>
-                En cas de vitre cassée, nous prenons les mesures nécessaires,
-                commandons la fenêtre avec un vitrage simple, double ou
-                feuilleté, et procédons à son remplacement complet si
-                nécessaire.
+              En cas de vitre cassée, nous prenons les mesures nécessaires, commandons la fenêtre avec un vitrage simple, double ou feuilleté, et procédons à son remplacement complet si nécessaire.
               </p>
             </div>
             <div
@@ -349,8 +330,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 10 ? "active" : ""}`}>
               <h2>Reproduction de clé</h2>
               <p>
-                Si vous avez perdu ou cassé une clé, nous sommes en mesure de la
-                reproduire.
+              Si vous avez perdu ou cassé une clé, nous sommes en mesure de la reproduire.
               </p>
             </div>
             <div
@@ -374,12 +354,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 11 ? "active" : ""}`}>
               <h2>Installation de ferme-portes</h2>
               <p>
-                Les ferme-portes permettent de refermer une porte sans la
-                claquer ou de fermer une porte trop lourde pour se refermer
-                seule. Si votre ferme-porte ne fonctionne plus correctement ou
-                si vous souhaitez en faire installer un là où il n'y en a pas,
-                nous vous conseillerons sur le meilleur type de ferme-porte à
-                utiliser.
+              Les ferme-portes permettent de refermer une porte sans la claquer ou de fermer une porte trop lourde pour se refermer seule. Si votre ferme-porte ne fonctionne plus correctement ou si vous souhaitez en faire installer un là où il n'y en a pas, nous vous conseillerons sur le meilleur type de ferme-porte à utiliser.
               </p>
             </div>
             <div
@@ -405,9 +380,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 12 ? "active" : ""}`}>
               <h2>Pose de frein de sol</h2>
               <p>
-                Pour les portes en verre qui nécessitent une fermeture en
-                douceur, nous recommandons l'installation d'un frein de sol
-                adapté à votre porte après une évaluation de vos besoins.
+              Pour les portes en verre qui nécessitent une fermeture en douceur, nous recommandons l'installation d'un frein de sol adapté à votre porte après une évaluation de vos besoins.
               </p>
             </div>
             <div
@@ -433,10 +406,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 13 ? "active" : ""}`}>
               <h2>Blindage de porte</h2>
               <p>
-                Si vous ne vous sentez pas en sécurité en raison de la faiblesse
-                de votre porte, nous évaluerons la situation et vous proposerons
-                le meilleur type de blindage pour renforcer la sécurité de votre
-                porte.
+              Si vous ne vous sentez pas en sécurité en raison de la faiblesse de votre porte, nous évaluerons la situation et vous proposerons le meilleur type de blindage pour renforcer la sécurité de votre porte.
               </p>
             </div>
             <div
@@ -453,17 +423,14 @@ const ServicesComponent: FC = () => {
               <Image src={service13} alt="d*" />
             </div>
             <span>
-              <strong>Blindage de porte</strong>
+              <strong>Installation de bandeau ventouse</strong>
             </span>
           </SplideSlide>
           <SplideSlide>
             <div className={`info-bulle ${activeIndex === 14 ? "active" : ""}`}>
               <h2>Installation de bandeau ventouse</h2>
               <p>
-                Nous proposons l'installation d'un système de bandeau ventouse
-                pour renforcer l'accès aux bâtiments. Ce système électrique
-                supporte jusqu'à 300 kg par ventouse, ce qui renforce
-                considérablement la sécurité de votre bâtiment.
+              Nous proposons l'installation d'un système de bandeau ventouse pour renforcer l'accès aux bâtiments. Ce système électrique supporte jusqu'à 300 kg par ventouse, ce qui renforce considérablement la sécurité de votre bâtiment.
               </p>
             </div>
             <div
@@ -489,11 +456,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 15 ? "active" : ""}`}>
               <h2>Pose de barres de pivot</h2>
               <p>
-                {" "}
-                Si vos paumelles sont endommagées et que vous souhaitez les
-                remplacer tout en renforçant la sécurité de votre porte, les
-                barres de pivot remplaceront vos paumelles et renforceront
-                l'accès à votre appartement ou maison.
+              Si vos paumelles sont endommagées et que vous souhaitez les remplacer tout en renforçant la sécurité de votre porte, les barres de pivot remplaceront vos paumelles et renforceront l'accès à votre appartement ou maison.
               </p>
             </div>
             <div
@@ -519,10 +482,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 16 ? "active" : ""}`}>
               <h2>Pose de barres antipanique</h2>
               <p>
-                Les établissements publics sont équipés de sorties de secours
-                avec des barres antipanique. Nous vous proposons également
-                l'installation de ces barres pour garantir une évacuation
-                sécurisée en cas d'urgence.
+              Les établissements publics sont équipés de sorties de secours avec des barres antipanique. Nous vous proposons également l'installation de ces barres pour garantir une évacuation sécurisée en cas d'urgence.
               </p>
             </div>
             <div
@@ -548,11 +508,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 17 ? "active" : ""}`}>
               <h2>Installation de sélecteurs de fermeture</h2>
               <p>
-                Les sélecteurs de fermeture sont installés sur les portes à deux
-                vantaux qui s'ouvrent simultanément. Ils permettent à l'un des
-                vantaux de se fermer avant l'autre, offrant ainsi un meilleur
-                contrôle de la fermeture. Nous vous conseillerons sur le
-                meilleur type de sélecteur de fermeture à installer.
+              Les sélecteurs de fermeture sont installés sur les portes à deux vantaux qui s'ouvrent simultanément. Ils permettent à l'un des vantaux de se fermer avant l'autre, offrant ainsi un meilleur contrôle de la fermeture. Nous vous conseillerons sur le meilleur type de sélecteur de fermeture à installer.
               </p>
             </div>
             <div
@@ -578,9 +534,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 18 ? "active" : ""}`}>
               <h2>Installation de systèmes de contrôle d'accès</h2>
               <p>
-                Pour renforcer la sécurité de votre bâtiment, nous proposons
-                l'installation de systèmes de contrôle d'accès tels que des
-                lecteurs de cartes, des digicodes ou des serrures électroniques.
+              Pour renforcer la sécurité de votre bâtiment, nous proposons l'installation de systèmes de contrôle d'accès tels que des lecteurs de cartes, des digicodes ou des serrures électroniques.
               </p>
             </div>
             <div

@@ -40,7 +40,7 @@ const UrgenceComponent: FC = () => {
               </Link>
             </div>
             <div>
-              <h3>Equipe réactive aux messages</h3>
+              <h3>Équipe réactive aux messages</h3>
               <p>N’hésitez pas à nous contacter sur ces réseaux</p>
             </div>
           </div>
@@ -50,7 +50,7 @@ const UrgenceComponent: FC = () => {
         <div className="container">
           <h2 className="title">Une urgence</h2>
           <p className="subtitle">
-            N&apos;attendez pas, l&apos;appel et le devis est gratuit.
+            N&apos;attendez pas, l&apos;appel et le devis sont gratuits.
           </p>
           <PhoneButton />
         </div>

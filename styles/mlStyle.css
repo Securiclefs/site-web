@@ -784,14 +784,31 @@ footer .container > div:last-child h4 {
     padding-bottom: 50px;
 }
 
-.message-error{
+.message-success{
     text-align: center;
     margin: 20px 0;
     color: var(--cl-blue-light);
     font-weight: 600;
 }
 
+.message-error{
+    margin: 10px 0;
+    color: rgb(255, 84, 84)!important;
+    font-weight: 500;
+}
+
+.info-file > div p{
+    margin: 5px 0!important;
+    color: var(--cl-blue-light)!important;
+    font-weight: 500;
+}
+
 @media (min-width: 576px) {
+
+    footer .container > div{
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     footer .container > div:last-child{
         grid-template-columns: repeat(3, 1fr);
     }
