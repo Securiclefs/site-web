@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import React, { FC, useState } from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { upload, phone, email } from "@/assets/icons";
@@ -14,6 +14,8 @@ const ContactComponent: FC = () => {
         email: "",
         sujet: ""
       });
+
+      const [message, setMessage] = useState()
     
       const handleChange = (e: any) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -23,9 +25,13 @@ const ContactComponent: FC = () => {
         e.preventDefault();
     
         try {
-          const response = await axios.post("/api/mail", formData);
+
+          const response = await axios.post("/api/mail", formData );
           console.log(response.data); // Vous pouvez gérer la réponse ici, par exemple afficher un message de succès
           // Réinitialiser le formulaire
+
+          setMessage(response.data.message)
+          
           setFormData({
             nom: "",
             adresse: "",
@@ -67,23 +73,19 @@ const ContactComponent: FC = () => {
                                     <input type="email" placeholder="Email*"  id="email" name="email" value={formData.email} onChange={handleChange}/>
                                 </div>
                                 <div>
-                                    <textarea placeholder="Problème rencontré / sujet*" id="sujet" name="sujet" onChange={handleChange}>{formData.sujet}</textarea>
-                                </div>
-                                <div className="drop">
-                                    <input type="file" name="image" id="image" multiple/>
-                                    <div className="zone">
-                                        <Image src={upload} alt="serrurier" />
-                                        <p>Ajouter images / documents</p>
-                                    </div>
-                                    
-                                </div>
-                                <div className="info-file">
-                                    <p>Le document ne doit pas dépasser 10mb</p>
+                                <textarea
+            placeholder="Problème rencontré / sujet*"
+            id="sujet"
+            name="sujet" // Ajout de l'attribut "name" correspondant à la clé dans l'objet formData
+            onChange={handleChange}
+            value={formData.sujet}
+          ></textarea>
                                 </div>
                                 <div className="politique">
                                     <input type="checkbox" name="politique" id="politique" />
                                     <label htmlFor="politique">J’accepte les politiques de confidentialité.</label>
                                 </div>
+                                <p className="message-error">{message}</p>
                                 <button type="submit" className="form-btn">Envoyer</button>
                             </form>
                             <div className="coords">

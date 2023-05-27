@@ -1,8 +1,6 @@
 import nodemailer from "nodemailer";
-import { NextApiRequest, NextApiResponse } from "next";
-import smtpConfig from "@/config/smtpConfig";
-import upload from "../middleware/uploadMiddleware";
-import fs from "fs";
+import type { NextApiRequest, NextApiResponse } from "next";
+import multer from "multer";
 
 const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE } = process.env;
 
@@ -21,20 +19,22 @@ interface ApiResponse {
   error?: string;
 }
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ApiResponse>
-) {
-  if (req.method === "POST") {
-    upload.array('image', 10)(req, res, async (error: any) => {
-      if (error) {
-        console.error("Error uploading files:", error);
-        res.status(500).json({ error: "Failed to upload files" });
-        return;
-      }
+const upload = multer().fields([
+  { name: 'nom', maxCount: 1 },
+  { name: 'adresse', maxCount: 1 },
+  { name: 'ville', maxCount: 1 },
+  { name: 'codepostal', maxCount: 1 },
+  { name: 'telephone', maxCount: 1 },
+  { name: 'email', maxCount: 1 },
+  { name: 'sujet', maxCount: 1 },
+  { name: 'politique', maxCount: 1 },
+]);
 
-      const { nom, adresse, ville, codepostal, telephone, email, sujet }: ContactFormData = req.body;
-      const images = req.files as Express.Multer.File[];
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method === 'POST') {
+    try {
+      console.log(req.body);
+      const { nom, adresse, ville, codepostal, telephone, email, sujet } = req.body;
 
       const content =
         " Nom : " +
@@ -53,55 +53,33 @@ export default async function handler(
         sujet +
         "\n";
 
-        console.log('image :',images)
-        console.log('content :',content)
-      // Configuration du transporteur Nodemailer
       const transporter = nodemailer.createTransport({
         host: SMTP_HOST,
-        port: SMTP_PORT,
-        secure: SMTP_SECURE,
+        port: parseInt(SMTP_PORT as string),
+        secure: SMTP_SECURE === 'true',
         auth: {
           user: SMTP_USER,
           pass: SMTP_PASS,
         },
       });
 
-      // Options de l'e-mail
       const mailOptions = {
-        from: smtpConfig.auth.user,
-        to: smtpConfig.auth.user,
-        subject: sujet,
+        from: "contact@securiclefs.fr",
+        to: SMTP_USER,
+        subject: "Contact - Securiclefs",
         text: content,
-        attachments: images?.map((image) => ({
-          filename: image.originalname,
-          content: image.buffer,
-        })),
       };
 
-      try {
-        // Envoi de l'e-mail
-        await transporter.sendMail(mailOptions);
+      await transporter.sendMail(mailOptions);
 
-        // Suppression des fichiers après l'envoi du mail
-        if (images) {
-          images.forEach((image) => {
-            fs.unlink(image.path, (err) => {
-              if (err) {
-                console.error("Failed to delete file:", err);
-              } else {
-                console.log("File deleted successfully");
-              }
-            });
-          });
-        }
-
-        res.status(200).json({ message: "E-mail sent successfully" });
-      } catch (error) {
-        console.error("Error sending e-mail:", error);
-        res.status(500).json({ error: "Failed to send e-mail" });
-      }
-    });
+      res.status(200).json({ message: "Message envoyé." });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Une erreur c'est ptoduite." });
+    }
   } else {
-    res.status(400).json({ error: "Invalid request method" });
+    res.status(405).json({ message: 'Method not allowed' });
   }
-}
+};
+
+export default handler;

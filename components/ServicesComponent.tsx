@@ -24,7 +24,7 @@ import PhoneButton from "@/components/shared/phoneButtonComponent";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
 
-const ServicesComponent = () => {
+const ServicesComponent: FC = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const splideRef = useRef(null);
 
@@ -59,16 +59,16 @@ const ServicesComponent = () => {
     // // infoBulle2.classList.remove("active")
   };
 
-  const handleItemClick = (index) => {
+  const handleItemClick = (index: any) => {
     setActiveIndex(index);
 
-    const handleItemClick = (index) => {
+    const handleItemClick = (index: any) => {
       setActiveIndex(index);
-      splideRef.current.splide.go(index);
+      // splideRef.current.splide.go(index) || null;
     };
   };
 
-  const handleItemHover = (index) => {
+  const handleItemHover = (index: any) => {
     setActiveIndex(index);
   };
 

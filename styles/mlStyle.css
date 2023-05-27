@@ -759,6 +759,13 @@ footer .container > div:last-child h4 {
     padding-bottom: 50px;
 }
 
+.message-error{
+    text-align: center;
+    margin: 20px 0;
+    color: var(--cl-blue-light);
+    font-weight: 600;
+}
+
 @media (min-width: 576px) {
     footer .container > div:last-child{
         grid-template-columns: repeat(3, 1fr);
