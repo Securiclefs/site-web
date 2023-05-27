@@ -46,17 +46,6 @@ const ServicesComponent: FC = () => {
         count++;
       }
     });
-
-    // let slideVisible1 = slideVisible[0]
-    // let slideVisible2 = slideVisible[slideVisible.length - 1]
-
-    // let infoBulle1 = infoBulle[slideVisible1]
-    // let infoBulle2 = infoBulle[slideVisible2]
-
-    // console.log(infoBulle[slideVisible1]);
-
-    // // infoBulle1.classList.remove("active")
-    // // infoBulle2.classList.remove("active")
   };
 
   const handleItemClick = (index: any) => {
@@ -70,6 +59,7 @@ const ServicesComponent: FC = () => {
 
   const handleItemHover = (index: any) => {
     setActiveIndex(index);
+    
   };
 
   const handleItemLeave = () => {
@@ -108,7 +98,7 @@ const ServicesComponent: FC = () => {
             <div className={`info-bulle ${activeIndex === 1 ? "active" : ""}`}>
               <h2>Ouverture de porte claquée</h2>
               <p>
-                Si votre porte a été fermée mais non verrouillée, nous
+                Si votre porte a été fermée, mais non verrouillée, nous
                 effectuons une ouverture à l'aide d'outils spécialisés pour
                 éviter d'endommager la porte.
               </p>

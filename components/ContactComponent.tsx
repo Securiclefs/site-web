@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Image from "next/image"
 import Link from "next/link"
 import { upload, phone, email } from "@/assets/icons";
@@ -14,6 +14,21 @@ const ContactComponent: FC = () => {
         email: "",
         sujet: ""
       });
+
+    //   useEffect(() => {
+    //     const elements = document.querySelectorAll('.splide__slide.is-visible');
+    //     console.log(elements);
+        
+    //     for (let i = elements.length - 1; i >= 0; i--) {
+    //       const element = elements[i];
+    //       const rect = element.getBoundingClientRect();
+    //       if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+    //         element.classList.add('last-visible-slide');
+    //         break;
+    //       }
+    //     }
+    //   }, []);
+    
 
       const [message, setMessage] = useState()
     
