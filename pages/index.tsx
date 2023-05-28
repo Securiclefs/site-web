@@ -15,6 +15,7 @@ import { useNavSettingsContext } from "@/context/nav-settings-context";
 import Head from "next/head";
 import { NextPage } from "next/types";
 import { useEffect } from "react";
+import "animate.css/animate.min.css"; 
 
 interface Props {
   seo: Seo;

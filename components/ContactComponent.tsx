@@ -3,8 +3,14 @@ import Image from "next/image"
 import Link from "next/link"
 import { upload, phone, email } from "@/assets/icons";
 import axios from "axios";
+import { useInView } from "react-intersection-observer";
 
 const ContactComponent: FC = () => {
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.2,
+      });
+      
     const [formData, setFormData] = useState<{ [key: string]: string | FileList | null }>({
         nom: "",
         adresse: "",
@@ -111,8 +117,8 @@ const ContactComponent: FC = () => {
                 <div className="card">
                     <div className="grid-container">
                         <div className="form-container">
-                            <h2>Contactez-<span className="blue">nous</span></h2>
-                            <p>Utilisez ce formulaire pour nous envoyer des informations/photos.</p>
+                            <h2 ref={ref} className={inView ? " animate__animated animate__slideInDown" : ""}>Contactez-<span className="blue">nous</span></h2>
+                            <p ref={ref} className={inView ? " animate__animated animate__slideInDown" : ""}>Utilisez ce formulaire pour nous envoyer des informations/photos.</p>
                                 {/*multi form data*/}
                             <form method="post" onSubmit={handleSubmit} encType="multipart/form-data">
                                 <div>
@@ -144,10 +150,10 @@ const ContactComponent: FC = () => {
                                 </div>
                                 <div className="info-file">
                                 {formData.file && typeof formData.file !== 'string' && Array.from(formData.file).map((file: File, index: number) => (
-    <div key={index}>
-      <p>{file.name}</p>
-    </div>
-  ))}
+                                    <div key={index}>
+                                    <p>{file.name}</p>
+                                    </div>
+                                ))}
                                     <p>Le document ne doit pas dépasser 10mb</p>
                                     <p className="message-error">{messageFile}</p>
                                 </div>
@@ -178,7 +184,7 @@ const ContactComponent: FC = () => {
                             </div>
                         </div>
                         <div className="map-container">
-                           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2618.1273332868554!2d2.2406906999999996!3d48.989134199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66707d9b08c91%3A0x1e6d2fd6a8bce7a3!2s38%20Rue%20de%20la%20Mare%20des%20Noues%2C%2095130%20Franconville!5e0!3m2!1sfr!2sfr!4v1684526480512!5m2!1sfr!2sfr" width="600" height="800" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+                           <iframe ref={ref} className={inView ? " animate__animated animate__slideInUp" : ""} src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2618.1273332868554!2d2.2406906999999996!3d48.989134199999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66707d9b08c91%3A0x1e6d2fd6a8bce7a3!2s38%20Rue%20de%20la%20Mare%20des%20Noues%2C%2095130%20Franconville!5e0!3m2!1sfr!2sfr!4v1684526480512!5m2!1sfr!2sfr" width="600" height="800" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
                 </div>

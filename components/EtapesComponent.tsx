@@ -1,11 +1,17 @@
 import { FC } from "react";
+import { useInView } from "react-intersection-observer";
 
 const EtapesComponent: FC = () => {
+    const [ref, inView] = useInView({
+        triggerOnce: true,
+        threshold: 0.2,
+      });
+    
   return (
     <section id="etapes">
         <div className="container">
-			<h2 className="title">Comment ça marche ?</h2>
-			<p className="subtitle">Simple comme bonjour !</p>
+			<h2 ref={ref} className={inView ? "title animate__animated animate__fadeInUp" : "title"}>Comment ça marche ?</h2>
+			<p ref={ref} className={inView ? "subtitle animate__animated animate__fadeInUp" : "subtitle"}>Simple comme bonjour !</p>
 
             <div className="flex-container">
                 <div className="card">

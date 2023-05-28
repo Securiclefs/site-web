@@ -17,10 +17,11 @@
 
 body {
     font-family: var(--ft-primary);
+    overflow-x: hidden;
 }
 
 .title {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 15px;
@@ -372,7 +373,7 @@ section {
     color: var(--cl-white);
 }
 #faq .container .card > h2 {
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 600;
     margin-bottom: 20px;
     font-family: var(--ft-secondary);

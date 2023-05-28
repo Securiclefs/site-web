@@ -29,6 +29,7 @@ const MentionsLegales: NextPage<Props> = () => {
           <div>
             <h3>Société</h3>
             <p>Securiclefs</p>
+            <p>Forme juridique : Entreprise Individuelle (E.I)</p>
             <p>Siège social : 38 rue de la Mare des Noues, 95130 Franconville</p>
             <p>SIREN : 95133333500010</p>
             <p>Code APE: 4332B</p>

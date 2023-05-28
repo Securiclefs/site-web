@@ -12,6 +12,7 @@ const FooterComponent: FC = () => {
 
   useEffect(() => {
     setZones(villesData.map((data) => data.Ville)); // Use the data here
+
   }, []);
   return (
     <>
@@ -60,7 +61,7 @@ const FooterComponent: FC = () => {
               </div>
             </div>
           </div>
-          <h3 className="text-center mb-8 font-bold">Mes zones</h3>
+          <h3 className="text-center mb-8 font-bold">Mes zones d'interventions</h3>
           <div>
             {zones.map((ville, index) => (
               <h4 className="text-center" key={index}>

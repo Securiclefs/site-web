@@ -40,12 +40,12 @@ const HeroComponent: FC = () => {
       </div>
       <div className="container">
         <div className="content">
-          <p>24/24 7j/7j</p>
-          <h1>Serrurier à Paris et en Ile de France </h1>
-          <h2>Fiabilité et rapidité !</h2>
+          <p className="animate__animated animate__fadeInDown">24/24 7j/7j</p>
+          <h1 className="animate__animated animate__fadeInDown">Serrurier à Paris et en Ile de France </h1>
+          <h2 className="animate__animated animate__fadeInDown">Fiabilité et rapidité !</h2>
           <div>
-            <Image src={assurances} height={15} width={15} alt="coffre fort" />
-            <span>Agréé assurances</span>
+            <Image src={assurances} height={15} width={15} alt="coffre fort"  className="animate__animated animate__fadeInDown"/>
+            <span className="animate__animated animate__fadeInDown">Agréé assurances</span>
           </div>
           {/* <div>
                         <Image src={position} height={15} width={15} alt=""/>

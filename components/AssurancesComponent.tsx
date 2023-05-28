@@ -14,13 +14,19 @@ import {
 } from "@/assets/shared";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/themes/splide-default.min.css";
+import { useInView } from "react-intersection-observer";
 
 const AssurancesComponent: FC = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
   return (
     <section id="assurance">
       <div className="container">
-        <h2 className="title">Nos assurances</h2>
-        <p className="subtitle">
+        <h2 ref={ref} className={inView ? "title animate__animated animate__fadeInRight" : "title"}>Nos assurances</h2>
+        <p  ref={ref} className={inView ? "subtitle animate__animated animate__fadeInRight" : "subtitle"}>
           La majorité des assureurs prennent en charge jusqu’à 100% de nos
           interventions.
         </p>

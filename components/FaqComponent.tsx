@@ -1,6 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import Image from "next/image";
 import { faq, faqWave } from "@/assets/shared";
+import { useInView } from "react-intersection-observer";
 
 const FaqComponent: FC = () => {
   const [activeAccordion, setActiveAccordion] = useState("");
@@ -11,16 +12,22 @@ const FaqComponent: FC = () => {
     );
   };
 
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
+  });
+
+
   return (
     <section id="faq">
       <div className="container">
         <div className="card">
-          <h2>F.A.Q</h2>
-          <p>Réponses fournies par notre équipe</p>
+          <h2 ref={ref} className={inView ? "title animate__animated animate__fadeInUp" : "title"}>F.A.Q</h2>
+          <p ref={ref} className={inView ? "animate__animated animate__fadeInUp" : ""}>Réponses fournies par notre équipe</p>
 
           <div className="grid-container">
             <div>
-              <Image src={faq} alt="Serrurier Paris" width="500" height="500" />
+              <Image src={faq} alt="Serrurier Paris" width="500" height="500"  ref={ref} className={inView ? "animate__animated animate__fadeInUp" : ""}/>
             </div>
             <div>
               <div className="faq-content accordion">
