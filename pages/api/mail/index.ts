@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
 import { v2 as cloudinary } from 'cloudinary';
+import * as mime from 'mime-types';
 import nodemailer from "nodemailer";
 
 const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE, SMTP_MAIL } = process.env;
@@ -27,12 +28,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
             const attachments = await Promise.all(
                 Object.values(files).map(async (file: any) => {
-                    const result = await cloudinary.uploader.upload(file.filepath);
-                    return {
-                        filename: file.originalFilename,
-                        content: result.secure_url,
-                        public_id: result.public_id,
-                    };
+                    // Gérer les images avec Cloudinary ou les autres types de fichiers avec le système de fichiers local
+                    const mimeType = mime.lookup(file.filepath);
+                    if (mimeType && mimeType.startsWith('image/')) {
+                        const result = await cloudinary.uploader.upload(file.filepath);
+                        return {
+                            filename: file.originalFilename,
+                            content: result.secure_url,
+                            public_id: result.public_id,
+                        };
+                    }
+                    // Pour les autres types de fichiers, simplement retourner le chemin d'accès local au fichier
+                    else {
+                        return {
+                            filename: file.originalFilename,
+                            content: file.filepath,
+                        };
+                    }
                 })
             );
             console.log(attachments)
@@ -78,10 +90,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
             try {
                 await transporter.sendMail(mailOptions as any);
+                // Supprimer les images de Cloudinary
                 await Promise.all(
-                    attachments.map((attachment: any) =>
-                        cloudinary.uploader.destroy(attachment.public_id)
-                    )
+                    attachments
+                        .filter((attachment: any) => attachment.public_id)
+                        .map((attachment: any) =>
+                            cloudinary.uploader.destroy(attachment.public_id)
+                        )
                 );
                 res.status(200).json({ message: "Message envoyé." });
             } catch (error) {
