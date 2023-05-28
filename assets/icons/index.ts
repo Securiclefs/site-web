@@ -31,7 +31,10 @@ import service16 from "./16.svg";
 import service17 from "./17.svg";
 import service18 from "./18.svg";
 
+// Loading
+import loadingIcon from "./loading.gif";
+
 export { phoneIcon, instagram, tiktok, facebook, whatsapp, france, position, 
     assurances, check, upload, phone, email, service1, service2, service3, service4,
     service5, service6, service7, service8, service9, service10, service11, service12,
-    service13, service14, service15, service16, service17, service18 };
+    service13, service14, service15, service16, service17, service18, loadingIcon };

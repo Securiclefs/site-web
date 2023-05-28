@@ -4,6 +4,7 @@ import Link from "next/link"
 import { upload, phone, email } from "@/assets/icons";
 import axios from "axios";
 import { useInView } from "react-intersection-observer";
+import Loading from "./shared/loadingComponent"
 
 const ContactComponent: FC = () => {
     const [ref, inView] = useInView({
@@ -24,25 +25,26 @@ const ContactComponent: FC = () => {
 
     const [message, setMessage] = useState("")
     const [messageFile, setMessageFile] = useState("")
-    const [totalFileSize, setTotalFileSize] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
 
 
     const handleChange = (e: any) => {
         if (e.target.name === "file") {
             setMessageFile("")
+            let listFiles = e.target.files
 
-            if(e.target.files.length <= 10){
-                const totalSize = getTotalFileSize(e.target.files);
-                if (totalSize <= 10 * 1024 * 1024) {
-                    setFormData({ ...formData, [e.target.name]: e.target.files });
-                    setTotalFileSize(totalSize)
-                   
-                    
-                } else{
-                    setMessageFile("Le poid total est limité à 10 mb.")
+            if(listFiles.length <= 5){
+                for (let index = 0; index < listFiles.length; index++) {
+                    const fileSize = listFiles[index].size;
+
+                    if (fileSize <= 2 * 1024 * 1024) {
+                        setFormData({ ...formData, [e.target.name]: e.target.files });
+                    } else{
+                        setMessageFile("Le poid de chaque fichier est limité à 2mo.")
+                    }
                 }
             } else {
-                setMessageFile("Le nombre fichier est limité à 10.")
+                setMessageFile("Le nombre fichier est limité à 5.")
             }
            
         } else {
@@ -50,18 +52,11 @@ const ContactComponent: FC = () => {
         }
     };
 
-    const getTotalFileSize = (files: FileList | null): number => {
-        let totalSize = 0;
-        if (files) {
-            for (let i = 0; i < files.length; i++) {
-                totalSize += files[i].size;
-            }
-        }
-        return totalSize;
-    };
-
     const handleSubmit = async (e: any) => {
         e.preventDefault();
+
+        const isFormValid = validateForm();
+        if (!isFormValid) return;
 
         // Initialize FormData
         const data = new FormData();
@@ -80,6 +75,8 @@ const ContactComponent: FC = () => {
             }
         }
 
+        setIsLoading(true); 
+
         try {
             const response = await axios.post("/api/mail", data, {
                 headers: {
@@ -87,29 +84,69 @@ const ContactComponent: FC = () => {
                 }
             });
             setMessage(response.data.message)
-           let nomValue =  document.querySelector("#nom") as HTMLInputElement 
-           nomValue.value = ""
-           let adresseValue =  document.querySelector("#adresse") as HTMLInputElement 
-           adresseValue.value = ""
-           let villeValue =  document.querySelector("#ville") as HTMLInputElement 
-           villeValue.value = ""
-           let codepostalValue =  document.querySelector("#codepostal") as HTMLInputElement 
-           codepostalValue.value = ""
-           let telephoneValue =  document.querySelector("#telephone") as HTMLInputElement 
-           telephoneValue.value = ""
-           let emailValue =  document.querySelector("#email") as HTMLInputElement 
-           emailValue.value = ""
-           let sujetValue =  document.querySelector("#sujet") as HTMLTextAreaElement 
-           sujetValue.value = ""
-           let fileValue =  document.querySelector("#file") as any
-           fileValue.value = ""
+            resetForm()
 
-            
-            setTotalFileSize(0);
         } catch (error) {
             console.error(error);
         }
+
+        setIsLoading(false);
     };
+
+    const validateForm = () => {
+        let isValid = true;
+
+        if (!formData.nom || (formData.nomValue as string) === "") {
+          isValid = false;
+          setMessage("Veuillez saisir votre nom complet.");
+        } else if (!formData.adresse || (formData.adresse as string).trim() === "") {
+          isValid = false;
+          setMessage("Veuillez saisir votre adresse.");
+        } else if (!formData.ville || (formData.ville as string).trim() === "") {
+          isValid = false;
+          setMessage("Veuillez saisir votre ville.");
+        } else if (!formData.codepostal || (formData.codepostal as string).trim() === "") {
+          isValid = false;
+          setMessage("Veuillez saisir votre code postal.");
+        } else if (!formData.telephone || (formData.telephone as string).trim() === "") {
+          isValid = false;
+          setMessage("Veuillez saisir votre numéro de téléphone.");
+        } else if (!formData.email || (formData.email as string).trim() === "") {
+          isValid = false;
+          setMessage("Veuillez saisir votre adresse email.");
+        } else if (!formData.sujet || (formData.sujet as string).trim() === "") {
+          isValid = false;
+          setMessage("Veuillez saisir votre sujet.");
+        }
+    
+        return isValid;
+      };
+
+      const resetForm = () => {
+        const formElements = document.querySelectorAll(
+          "#contact input, #contact textarea"
+        );
+    
+        
+        formElements.forEach((element) => {
+          if (element instanceof HTMLInputElement) {
+            element.value = "";
+          } else if (element instanceof HTMLTextAreaElement) {
+            element.value = "";
+          }
+        });
+    
+        setFormData({
+          nom: "",
+          adresse: "",
+          ville: "",
+          codepostal: "",
+          telephone: "",
+          email: "",
+          sujet: "",
+          file: null,
+        });
+      };
 
     return (
         <section id="contact">
@@ -154,13 +191,17 @@ const ContactComponent: FC = () => {
                                     <p>{file.name}</p>
                                     </div>
                                 ))}
-                                    <p>Le document ne doit pas dépasser 10mb</p>
-                                    <p className="message-error">{messageFile}</p>
+                                    <p>Le document ne doit pas dépasser 2mo.</p>
+                                    <p>Le nombre de documents est limité à 5.</p>
+                                    {!isLoading && <p className="message-error">{messageFile}</p>}
+                                    
                                 </div>
                                 <div className="politique">
                                     <label htmlFor="politique">En soumettant ce formulaire, vous acceptez notre politique de confidentialité.</label>
                                 </div>
-                                <p className="message-success">{message}</p>
+                                {isLoading && <Loading />}
+                                {!isLoading && <p className="message-success">{message}</p>}
+                                
                                 <button type="submit" className="form-btn">Envoyer</button>
                             </form>
                             <div className="coords">

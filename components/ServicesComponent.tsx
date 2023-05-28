@@ -115,14 +115,14 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Ouverture de <br />
+                Ouverture de
                 porte claquée
               </strong>
             </span>
           </SplideSlide>
           <SplideSlide>
             <div className={`info-bulle ${activeIndex === 2 ? "active" : ""}`}>
-              <h2>Fermeture à clé</h2>
+              <h2>Ouverture de porte fermée</h2>
               <p>
               Si vous avez verrouillé votre porte et perdu la clé, nous procédons au perçage du cylindre pour pouvoir déverrouiller la porte sans causer de dommages excessifs.
               </p>
@@ -141,7 +141,7 @@ const ServicesComponent: FC = () => {
               <Image src={service2} alt="d*" />
             </div>
             <span>
-              <strong>Fermeture à clé</strong>
+              <strong>Ouverture de porte fermée</strong>
             </span>
           </SplideSlide>
           <SplideSlide>
@@ -166,7 +166,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Installation de <br />
+                Installation de 
                 volets roulants
               </strong>
             </span>
@@ -217,7 +217,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Installation de <br /> blocs-portes
+                Installation de  blocs-portes
               </strong>
             </span>
           </SplideSlide>
@@ -243,7 +243,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Installation de <br /> portes anti-squat
+                Installation de  portes anti-squat
               </strong>
             </span>
           </SplideSlide>
@@ -269,7 +269,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Pose de cornières <br /> anti-pinces
+                Pose de cornières  anti-pinces
               </strong>
             </span>
           </SplideSlide>
@@ -295,7 +295,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Installation de <br /> paumelles
+                Installation de  paumelles
               </strong>
             </span>
           </SplideSlide>
@@ -321,7 +321,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Remplacement de <br /> vitrage ou <br /> de fenêtre
+                Remplacement de  vitrage ou  de fenêtre
               </strong>
             </span>
           </SplideSlide>
@@ -371,7 +371,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Installation de <br /> ferme-portes
+                Installation de  ferme-portes
               </strong>
             </span>
           </SplideSlide>
@@ -397,7 +397,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Pose de frein <br /> de sol
+                Pose de frein  de sol
               </strong>
             </span>
           </SplideSlide>
@@ -447,7 +447,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Installation de <br /> bandeau ventouse
+                Installation de  bandeau ventouse
               </strong>
             </span>
           </SplideSlide>
@@ -473,7 +473,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Pose de barres <br /> de pivot
+                Pose de barres  de pivot
               </strong>
             </span>
           </SplideSlide>
@@ -499,7 +499,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Pose de barres <br /> antipanique
+                Pose de barres  antipanique
               </strong>
             </span>
           </SplideSlide>
@@ -525,7 +525,7 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Installation de <br /> sélecteurs de fermeture
+                Installation de  sélecteurs de fermeture
               </strong>
             </span>
           </SplideSlide>
@@ -551,8 +551,8 @@ const ServicesComponent: FC = () => {
             </div>
             <span>
               <strong>
-                Installation de <br />
-                systèmes de <br />
+                Installation de 
+                systèmes de 
                 contrôle d'accès
               </strong>
             </span>
