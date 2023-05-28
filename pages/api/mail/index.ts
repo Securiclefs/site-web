@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
-import fs from 'fs';
+import { v2 as cloudinary } from 'cloudinary';
 import nodemailer from "nodemailer";
-import path from "path";
 
 const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_SECURE, SMTP_MAIL } = process.env;
 
@@ -11,25 +10,32 @@ export const config = {
         bodyParser: false,
     },
 };
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
 
-        console.log(process.env);
-        
-
-        const form = new formidable.IncomingForm(
-        {
-            uploadDir: path.join(process.cwd(), 'upload/files'),
-            keepExtensions: true,
-        });
-
+        const form = new formidable.IncomingForm({keepExtensions: true});
         form.parse(req, async (err, fields, files) => {
             if (err) {
                 res.status(500).json({ error: "Failed to parse form" });
                 return;
             }
-
+            const attachments = await Promise.all(
+                Object.values(files).map(async (file: any) => {
+                    const result = await cloudinary.uploader.upload(file.filepath);
+                    return {
+                        filename: file.originalFilename,
+                        content: result.secure_url,
+                        public_id: result.public_id,
+                    };
+                })
+            );
+            console.log(attachments)
             const { nom, adresse, ville, codepostal, telephone, email, sujet } = fields;
 
             const content =
@@ -64,23 +70,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 to: SMTP_MAIL,
                 subject: sujet,
                 text: content,
-                attachments: Object.values(files).map((file : any) => {
-                    return {
-                        filename: file.originalFilename,
-                        content: fs.readFileSync(file.filepath),
-                    };
-                }),
+                attachments: attachments.map((attachment) => ({
+                    filename: attachment.filename,
+                    path: attachment.content,
+                })),
             };
 
             try {
                 await transporter.sendMail(mailOptions as any);
-
-                Object.values(files).forEach((file : any) => {
-                    fs.unlink(file.filepath, function(err) {  // Change this line
-                        if (err) throw err;
-                    });
-                });
-
+                await Promise.all(
+                    attachments.map((attachment: any) =>
+                        cloudinary.uploader.destroy(attachment.public_id)
+                    )
+                );
                 res.status(200).json({ message: "Message envoyé." });
             } catch (error) {
                 console.error("Error sending e-mail:", error);
@@ -89,7 +91,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
     } else {
         res.setHeader('Allow', ['POST'])
-        
         res.status(405).end(`Method ${req.method} Not Allowed`)
     }
 }
