@@ -60,7 +60,7 @@ const MentionsLegales: NextPage<Props> = () => {
       </section>
       <section id="politiques">
         <div className="container">
-          <h2>Politiques de Confidentialité</h2>
+          <h2>Politique de Confidentialité</h2>
 
           <div>
             <p>

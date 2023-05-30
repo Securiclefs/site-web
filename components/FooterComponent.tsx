@@ -23,8 +23,7 @@ const FooterComponent: FC = () => {
               <h3>Menu</h3>
               <Link href="/#etapes">Comment ça marche ?</Link>
               <Link href="/#tarifs">Nos tarifs</Link>
-              <Link href="/#faq">F.A.G</Link>
-              <Link href="/#zones">Nos zones</Link>
+              <Link href="/#faq">F.A.Q</Link>
             </div>
             <div>
               <h3>Contact</h3>
@@ -61,7 +60,7 @@ const FooterComponent: FC = () => {
               </div>
             </div>
           </div>
-          <h3 className="text-center mb-8 font-bold">Mes zones d'interventions</h3>
+          <h3 className="text-center mb-8 font-bold">Nos zones d'interventions</h3>
           <div>
             {zones.map((ville, index) => (
               <h4 className="text-center" key={index}>

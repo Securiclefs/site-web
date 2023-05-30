@@ -145,7 +145,7 @@ section {
     width: 320px;
     padding: 20px;
     position: absolute;
-    bottom: 115px;
+    bottom: 140px;
     left: 50%;
     transform: translateX(-50%);
     background-color: var(--cl-white);
@@ -166,7 +166,7 @@ section {
     font-size: 12px;
 }
 #service .container .splide__slide .info-bulle.active {
-    bottom: 130px;
+    bottom: 150px;
     opacity: 1;
     z-index: 2;
     /* display: block; */
@@ -668,6 +668,7 @@ footer .container > div > div h3 {
 footer .container > div > div a {
     color: var(--cl-white);
     font-size: 14px;
+    margin-bottom: 10px;
     text-align: center;
 }
 footer .container > div > .reseaux > div {
