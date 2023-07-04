@@ -422,7 +422,7 @@ const ServicesComponent: FC = () => {
               <Image src={service13} alt="d*" />
             </div>
             <span>
-              <strong>Installation de bandeau ventouse</strong>
+              <strong>Blindage de porte</strong>
             </span>
           </SplideSlide>
           <SplideSlide>
